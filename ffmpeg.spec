@@ -165,7 +165,6 @@ This package contains development files for %{name}
     --enable-gnutls \\\
     %{!?_without_ladspa:--enable-ladspa} \\\
     --enable-libass \\\
-    --enable-libbluray \\\
     %{?_with_bs2b:--enable-libbs2b} \\\
     %{?_with_caca:--enable-libcaca} \\\
     %{!?_without_cdio:--enable-libcdio} \\\
@@ -173,29 +172,21 @@ This package contains development files for %{name}
     %{?_with_faac:--enable-libfaac --enable-nonfree} \\\
     %{?_with_fdk_aac:--enable-libfdk-aac --enable-nonfree} \\\
     %{?_with_flite:--enable-libflite} \\\
-    %{!?_without_jack:--enable-indev=jack} \\\
     --enable-libfreetype \\\
     --enable-libfribidi \\\
     %{?_with_gme:--enable-libgme} \\\
     --enable-libgsm \\\
     %{?_with_ilbc:--enable-libilbc} \\\
     --enable-libmp3lame \\\
-    --enable-libkvazaar \\\
     %{?_with_netcdf:--enable-netcdf} \\\
-    %{!?_without_nvenc:--enable-nvenc --extra-cflags="-I%{_includedir}/nvenc"} \\\
     %{!?_without_openal:--enable-openal} \\\
     %{!?_without_opencl:--enable-opencl} \\\
     %{!?_without_opencv:--enable-libopencv} \\\
-    --enable-libopenh264 \\\
-    --enable-libmysofa \\\
-    --enable-libshine \\\
     --enable-libzvbi \\\
     --enable-libvidstab \\\
-    --enable-libvmaf --enable-version3 \\\
     %{!?_without_opengl:--enable-opengl} \\\
     --enable-libopenjpeg \\\
     --enable-libopus \\\
-    %{!?_without_pulse:--enable-libpulse} \\\
     %{?_with_rtmp:--enable-librtmp} \\\
     %{?_with_rubberband:--enable-librubberband} \\\
     %{?_with_smb:--enable-libsmbclient} \\\
@@ -211,7 +202,6 @@ This package contains development files for %{name}
     %{!?_without_vpx:--enable-libvpx} \\\
     %{?_with_webp:--enable-libwebp} \\\
     %{!?_without_x264:--enable-libx264} \\\
-    %{!?_without_x265:--enable-libx265} \\\
     %{!?_without_xvid:--enable-libxvid} \\\
     %{?_with_zmq:--enable-libzmq} \\\
     %{?_with_zvbi:--enable-libzvbi} \\\
@@ -234,49 +224,25 @@ sed -i "s|check_host_cflags -O3|check_host_cflags %{optflags}|" configure
 mkdir -p _doc/examples
 cp -pr doc/examples/{*.c,Makefile,README} _doc/examples/
 
-%build
 
+%build
 %{ff_configure}\
     --shlibdir=%{_libdir} \
-%if 0%{?ffmpegsuffix:1}
-    --build-suffix=%{ffmpegsuffix} \
-    --disable-doc \
-    --disable-ffmpeg --disable-ffplay --disable-ffprobe --disable-ffserver \
-%else
-%ifarch %{ix86}
-    --cpu=%{_target_cpu} \
-%endif
-%ifarch %{ix86} x86_64 ppc ppc64
-    --enable-runtime-cpudetect \
-%endif
-%ifarch ppc
-    --cpu=g3 \
-    --enable-pic \
-%endif
-%ifarch ppc64
-    --cpu=g5 \
-    --enable-pic \
-%endif
-%ifarch %{arm}
     --disable-runtime-cpudetect --arch=arm \
 %ifarch armv6hl
     --cpu=armv6 \
 %else
     --enable-thumb \
 %endif
-%ifarch armv7hl armv7hnl
+%ifarch armv7hl
     --cpu=armv7-a \
     --enable-vfpv3 \
-    --enable-thumb \
-%endif
-%ifarch armv7hnl
     --enable-neon \
 %endif
-%ifarch armv7hl
-    --disable-neon \
-%endif
-%endif
-%endif
+    --enable-mmal \
+    --enable-omx \
+    --enable-omx-rpi \
+
 %make_build V=1
 make documentation V=1
 make alltools V=1
