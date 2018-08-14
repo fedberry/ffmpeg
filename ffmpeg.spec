@@ -29,8 +29,6 @@ License:        GPLv2+
 %endif
 URL:            http://ffmpeg.org/
 Source0:	https://git.ffmpeg.org/gitweb/ffmpeg.git/snapshot/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
-# forces the buffers to be flushed after a drain has completed. Thanks to jcowgill
-Patch2:		buffer_flush.patch
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 BuildRequires:  bzip2-devel
 %{?_with_faac:BuildRequires: faac-devel}
