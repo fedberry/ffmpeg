@@ -33,11 +33,9 @@ BuildRequires:  freetype-devel
 BuildRequires:  gnutls-devel
 BuildRequires:  gsm-devel
 %{?_with_ilbc:BuildRequires: ilbc-devel}
-BuildRequires:  lame-devel >= 3.98.3
-%{!?_without_jack:BuildRequires: jack-audio-connection-kit-devel}
+BuildRequires:  lame-devel
 %{!?_without_ladspa:BuildRequires: ladspa-devel}
 BuildRequires:  libass-devel
-BuildRequires:  libbluray-devel
 %{?_with_bs2b:BuildRequires: libbs2b-devel}
 %{?_with_caca:BuildRequires: libcaca-devel}
 %{!?_without_cdio:BuildRequires: libcdio-paranoia-devel}
@@ -60,15 +58,8 @@ BuildRequires:  libv4l-devel
 BuildRequires:  libvdpau-devel
 BuildRequires:  libvorbis-devel
 %{?!_without_vpx:BuildRequires: libvpx-devel >= 0.9.1}
-%ifarch %{ix86} x86_64
-BuildRequires:  libmfx-devel
-BuildRequires:  libXvMC-devel
-BuildRequires:  libva-devel >= 0.31.0
-BuildRequires:  yasm
-%endif
 %{?_with_webp:BuildRequires: libwebp-devel}
 %{?_with_netcdf:BuildRequires: netcdf-devel}
-%{!?_without_nvenc:BuildRequires: nvenc-devel nv-codec-headers}
 %{?_with_amr:BuildRequires: opencore-amr-devel vo-amrwbenc-devel}
 %{!?_without_openal:BuildRequires: openal-soft-devel}
 %if 0%{!?_without_opencl:1}
@@ -79,7 +70,6 @@ Recommends:     opencl-icd
 BuildRequires:  openjpeg2-devel
 BuildRequires:  openjpeg-devel
 BuildRequires:  opus-devel
-%{!?_without_pulse:BuildRequires: pulseaudio-libs-devel}
 BuildRequires:  perl(Pod::Man)
 %{?_with_rubberband:BuildRequires: rubberband-devel}
 BuildRequires:  SDL2-devel
@@ -88,27 +78,26 @@ BuildRequires:  soxr-devel
 BuildRequires:  speex-devel
 BuildRequires:  subversion
 %{?_with_tesseract:BuildRequires: tesseract-devel}
-#BuildRequires:  texi2html
 BuildRequires:  texinfo
 %{?_with_twolame:BuildRequires: twolame-devel}
 %{?_with_wavpack:BuildRequires: wavpack-devel}
 %{!?_without_x264:BuildRequires: x264-devel >= 0.152}
-%{!?_without_x265:BuildRequires: x265-devel >= 2.8}
 %{!?_without_xvid:BuildRequires: xvidcore-devel}
 BuildRequires:  zlib-devel
 %{?_with_zmq:BuildRequires: zeromq-devel}
 %{?_with_zvbi:BuildRequires: zvbi-devel}
 BuildRequires:  libxcb-devel libxcb
-# New support
-BuildRequires:	libdrm-devel
-BuildRequires:	openh264-devel
-BuildRequires:	kvazaar-devel >= 1.2.0
-BuildRequires:	libmysofa-devel
-BuildRequires:	shine-devel
-BuildRequires:	vid.stab-devel
-BuildRequires:	vmaf-devel
-BuildRequires:	zvbi-devel
-BuildRequires:	alsa-lib-devel
+BuildRequires:  libdrm-devel
+BuildRequires:  vid.stab-devel
+BuildRequires:  zvbi-devel
+BuildRequires:  alsa-lib-devel
+
+### Rpi mmal / omx support
+BuildRequires:  raspberrypi-vc-libs-devel
+BuildRequires:  raspberrypi-vc-libs
+BuildRequires:  raspberrypi-vc-static
+BuildRequires:  libomxil-bellagio-devel
+
 
 %description
 FFmpeg is a complete and free Internet live audio and video
