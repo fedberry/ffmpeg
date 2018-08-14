@@ -297,6 +297,13 @@ install -pm755 tools/qt-faststart %{buildroot}%{_bindir}
 
 
 %changelog
+* Tue Aug 14 2018 Vaughan Agrez <devel at agrez dot net> 4.0.2-8
+- Import into Fedberry
+- Clean & refactor spec
+- Update BuildRequires
+- Add ExclusiveArch: %{arm}
+- Add configure options: --enable-mmal --enable-omx-rpi --enable-omx
+  --enable-neon
 
 * Wed Jul 18 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 4.0.2-7
 - Updated to 4.0.2-7
