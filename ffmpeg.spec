@@ -3,15 +3,15 @@
 %global _without_opencv   1
 
 # Globals for git repository
-%global commit0 0a155c57bd8eb92ccaf7f5857dc6ab276d235846
+%global commit0 fcbd117df3077bad495e99e20f01cf93737bce76
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
 
 Summary:    Digital VCR and streaming server
 Name:       ffmpeg
-Version:    4.0.2
-Release:    8%{?dist}
+Version:    4.0.3
+Release:    1%{?dist}
 %if 0%{?_with_amr:1}
 License:    GPLv3+
 %else
@@ -297,6 +297,9 @@ install -pm755 tools/qt-faststart %{buildroot}%{_bindir}
 
 
 %changelog
+* Sat Nov 03 2018 Vaughan Agrez <devel at agrez dot net> 4.0.3-1
+- New release
+
 * Tue Aug 14 2018 Vaughan Agrez <devel at agrez dot net> 4.0.2-8
 - Import into Fedberry
 - Clean & refactor spec
